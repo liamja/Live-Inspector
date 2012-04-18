@@ -1,0 +1,33 @@
+test-pages/
+doc/
+
+# CodeIgniter
+*/config/development
+*/logs/log-*.php
+*/logs/!index.html
+*/cache/*
+*/cache/!index.html
+
+# Sublime & TextMate
+*.sublime-project
+*.sublime-workspace
+*.tmproj
+
+# Netbeans
+nbproject
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+nbactions.xml
+nb-configuration.xml
+
+# Mac
+.DS_Store
+._*
+.Spotlight-V100
+.Trashes
+.sass-cache/*
+*.swp
+.DS_Store
