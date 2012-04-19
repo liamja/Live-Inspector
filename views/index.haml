@@ -1,5 +1,8 @@
 .container
-  .row
-    .twelve.columns
-      %h1 Ableton Inspector
-      %hr/
+	.row
+		.twelve.columns
+			%h1 Ableton Inspector
+			%hr/
+			%form{ :method => 'post', :enctype => 'multipart/form-data' }
+				%input{ :type => 'file', :name => 'file' }
+				%input{ :type => 'submit', :value => 'Upload!' }
