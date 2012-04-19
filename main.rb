@@ -19,7 +19,7 @@ class Main < Sinatra::Base
 		File.open(settings.public_folder + '/uploads/' + params['file'][:filename], "w") do |f|
 			f.write(params['file'][:tempfile].read)
 		end
-		return "The file was successfully uploaded!"
+		haml :output
 	end
 
 	not_found do

@@ -1,8 +1,8 @@
 .container
 	.row
-		.twelve.columns
-			%h1 Ableton Inspector
-			%hr/
+		.six.columns.centered
+			%h5.subheader Select your Ableton project file to inspect
 			%form{ :method => 'post', :enctype => 'multipart/form-data' }
+			%fieldset
 				%input{ :type => 'file', :name => 'file' }
-				%input{ :type => 'submit', :value => 'Upload!' }
+				%input.large.button{ :type => 'submit', :value => 'Inspect!' }
