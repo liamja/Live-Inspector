@@ -16,10 +16,23 @@ class Main < Sinatra::Base
 	end
 
 	post '/' do
-		File.open(settings.public_folder + '/uploads/' + params['file'][:filename], "w") do |f|
-			f.write(params['file'][:tempfile].read)
+
+		@file = params['file']
+
+		# projectFile = settings.public_folder + '/uploads/' + @file[:filename]
+		projectFile = @file[:tempfile].to_s
+
+		File.open(projectFile, "w") do |f|
+		  gz = Zlib::GzipReader.new(@file[:tempfile])
+			f.write(gz.read)
+		  gz.close
+		  @file[:size] = File.size f
 		end
+
+		Parse projectFile
+
 		haml :output
+
 	end
 
 	not_found do
