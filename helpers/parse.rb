@@ -2,7 +2,7 @@ def Parse(file)
 
 	@ableton = {}
 
-	doc = Hpricot.XML(File.read(file))
+	doc = Hpricot.XML file
 
 	@ableton[:Tracks] = doc.search("//Tracks//Name/EffectiveName[@Value]").map do |track|
 		track.attributes['Value']
