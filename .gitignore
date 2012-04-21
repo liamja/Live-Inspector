@@ -1,5 +1,6 @@
 test-pages/
 doc/
+public/uploads/
 
 # CodeIgniter
 */config/development
