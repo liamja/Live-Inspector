@@ -5,6 +5,6 @@ require 'sinatra'
 
 require './lib/partials'
 require './helpers/parse'
-require 'main'
+require './main'
 
 run Main
