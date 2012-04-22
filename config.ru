@@ -1,10 +1,10 @@
 require 'rubygems'
-require 'sinatra'
-require 'lib/partials'
 require 'hpricot'
 require 'zlib'
+require 'sinatra'
 
-require 'helpers/parse'
+require './lib/partials'
+require './helpers/parse'
 require 'main'
 
 run Main
