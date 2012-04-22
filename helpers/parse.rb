@@ -8,7 +8,7 @@ def Parse(file)
 		track.attributes['Value']
 	end
 
-	@ableton[:MasterTrack] = doc.search("//MasterTrack/Name/EffectiveName").map do |track|
+	@ableton[:MasterTrack] = doc.search("//MasterTrack/Name/EffectiveName[@Value]").map do |track|
 		track.attributes['Value']
 	end
 
