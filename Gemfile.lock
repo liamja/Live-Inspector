@@ -23,6 +23,6 @@ PLATFORMS
 
 DEPENDENCIES
   haml
-  hpricot
-  sinatra (= 1.3.2)
+  hpricot (>= 0.8.6)
+  sinatra (>= 1.3.2)
   thin
