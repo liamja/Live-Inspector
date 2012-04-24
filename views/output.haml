@@ -4,19 +4,19 @@
 			%h2 Project Info
 			%table.table.table-bordered.table-striped
 				%tbody
-				%tr
-					%td
-						%i.icon-pencil
-						Created in
-					%td= @ableton[:Creator]
-				%tr
-					%td
-						%i.icon-time
-						Tempo
-					%td= @ableton[:Tempo]
+					%tr
+						%td
+							%i.icon-pencil
+							Created in
+						%td= @ableton[:Creator]
+					%tr
+						%td
+							%i.icon-time
+							Tempo
+						%td= "#{@ableton[:Tempo]} BPM"
 		.span6
 			%h2 Tracks
-			%table.table.table-bordered.table-striped
+			%table.table.table-bordered.table-striped.table-condensed
 				%thead
 					%tr
 						%th Type
