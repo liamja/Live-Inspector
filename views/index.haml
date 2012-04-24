@@ -1,6 +1,12 @@
-.row
-	.eight.columns
-		%h4.subheader Select your Ableton project file to inspect
-		%form.nice{ :method => 'post', :enctype => 'multipart/form-data' }
-			%input{ :type => 'file', :name => 'file' }
-			%input.large.button{ :type => 'submit', :value => 'Inspect!' }
+.container
+
+	.hero-unit
+
+		%h1 Live Inspector
+		%p Select an Ableton Live project file to inspect
+
+		%form.form-inline{ :method => 'post', :enctype => 'multipart/form-data' }
+			%input.span4{ :type => 'file', :name => 'projectFile' }
+			%button.btn.btn-large.btn-primary{ :type => 'submit' }
+				%i.icon-white.icon-search
+				Inspect

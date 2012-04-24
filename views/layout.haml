@@ -1,33 +1,36 @@
 !!!
-/[if lt IE 7] <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en">
-/[if IE 7] <html class="no-js lt-ie9 lt-ie8" lang="en">
-/[if IE 8] <html class="no-js lt-ie9" lang="en">
-/ [if gt IE 8]><!
 %html.no-js{ :lang => "en" }
-  / <![endif]
+
   %head
     %meta{ :charset => "utf-8" }/
     / Set the viewport width to device width for mobile
     %meta{ :content => "width=device-width", :name => "viewport" }/
     %title Ableton Inspector
 
+    / LESS Files
+    %link{ :href => "less/bootstrap.less", :rel => "stylesheet/less" }
+
     / CSS Files
-    %link{ :href => "css/style.css", :rel => "stylesheet" }
+    / %link{ :href => "css/style.css", :rel => "stylesheet" }
 
     / IE Fix for HTML5 Tags
     /[if lt IE 9]
       %script{ :src => "//html5shiv.googlecode.com/svn/trunk/html5.js" }
 
+    / Pre-body JS Files
     %script{ :src => "js/libs/less-1.3.0.min.js" }
 
   %body
-
-    .container
+    %header
       = partial(:header)
-      = yield
+
+    = yield
+
+    %footer
       = partial(:footer)
     
     / JS Files
+    %script{ :src => "js/libs/jquery-1.7.1.js" }
     %script{ :src => "js/app.js" }
 
     / start Mixpanel
@@ -37,15 +40,16 @@
       
       mixpanel.init("db5657f7674bd3af14c306d4a7b7e6f0");
 
+    / start Gaug.es
     %script
       var _gauges = _gauges || [];
       (function() {
-        var t   = document.createElement('script');
-        t.type  = 'text/javascript';
-        t.async = true;
-        t.id    = 'gauges-tracker';
-        t.setAttribute('data-site-id', '4f969774f5a1f50b150000e6');
-        t.src = '//secure.gaug.es/track.js';
-        var s = document.getElementsByTagName('script')[0];
-        s.parentNode.insertBefore(t, s);
+      var t   = document.createElement('script');
+      t.type  = 'text/javascript';
+      t.async = true;
+      t.id    = 'gauges-tracker';
+      t.setAttribute('data-site-id', '4f969774f5a1f50b150000e6');
+      t.src = '//secure.gaug.es/track.js';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(t, s);
       })();
