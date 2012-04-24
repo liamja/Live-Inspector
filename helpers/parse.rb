@@ -4,13 +4,15 @@ def Parse(file)
 
 	doc = Hpricot.XML file
 
-	@ableton[:Tracks] = doc.search("//Tracks//Name/EffectiveName[@Value]").map do |track|
+	@ableton[:Tracks] = doc.search("//Tracks//Name/EffectiveName").map do |track|
 		track.attributes['Value']
 	end
 
-	@ableton[:MasterTrack] = doc.search("//MasterTrack/Name/EffectiveName[@Value]").map do |track|
-		track.attributes['Value']
-	end
+	@ableton[:MasterTrack] = doc.search("//MasterTrack/Name/EffectiveName").first.attributes['Value']
+
+	@ableton[:Tempo] = doc.search("//Tempo/ArrangerAutomation/Events/FloatEvent").first.attributes['Value']
+
+	@ableton[:Creator] = doc.search("/Ableton").first.attributes['Creator']
 
 end
 
