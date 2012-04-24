@@ -1,10 +1,11 @@
 $(document).ready(function(){
 
-	console.log('main.js loaded');
+	$('input[type="file"]').click(function(e) {
+		mixpanel.track('File Selected');
+	});
 
-	$('input[name="file"]').click(function(e) {
-		e.preventDefault();
-		mixpanel.track('Project File Uploaded');
+	$('button[type="submit"]').click(function(e) {
+		mixpanel.track('File Uploaded');
 	});
 
 });
