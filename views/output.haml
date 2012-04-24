@@ -1,12 +1,15 @@
-.row
-	.eight.columns
-		%h4 Tracks
-		%table
-			%tbody
-			- @ableton[:Tracks].each do |track|
+.container
+	.row
+		.span4
+			/ Sidebar
+		.span8
+			%h4 Tracks
+			%table
+				%tbody
+				- @ableton[:Tracks].each do |track|
+					%tr
+						%td Track
+						%td= track
 				%tr
-					%td Track
-					%td= track
-			%tr
-				%td Master Track
-				%td= @ableton[:MasterTrack]
+					%td Master Track
+					%td= @ableton[:MasterTrack]

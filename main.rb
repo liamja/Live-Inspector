@@ -17,11 +17,11 @@ class Main < Sinatra::Base
 
 	post '/' do
 
-	  gz = Zlib::GzipReader.new(params['file'][:tempfile])
-		Parse gz.read
+	  gz = Zlib::GzipReader.new(params[:projectFile][:tempfile])
+	  Parse gz.read
 	  gz.close
 
-		haml :output
+	  haml :output
 
 	end
 
