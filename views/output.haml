@@ -1,15 +1,31 @@
 .container
 	.row
-		.span4
-			/ Sidebar
-		.span8
-			%h4 Tracks
-			%table
+		.span6
+			%h2 Project Info
+			%table.table.table-bordered.table-striped
 				%tbody
-				- @ableton[:Tracks].each do |track|
-					%tr
-						%td Track
-						%td= track
 				%tr
-					%td Master Track
-					%td= @ableton[:MasterTrack]
+					%td
+						%i.icon-pencil
+						Created in
+					%td= @ableton[:Creator]
+				%tr
+					%td
+						%i.icon-time
+						Tempo
+					%td= @ableton[:Tempo]
+		.span6
+			%h2 Tracks
+			%table.table.table-bordered.table-striped
+				%thead
+					%tr
+						%th Type
+						%th Label
+				%tbody
+					- @ableton[:Tracks].each do |track|
+						%tr
+							%td Track
+							%td= track
+					%tr
+						%td Master Track
+						%td= @ableton[:MasterTrack]
