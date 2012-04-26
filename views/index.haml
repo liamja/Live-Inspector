@@ -6,7 +6,7 @@
 		%p Select an Ableton Live project file to inspect
 
 		%form.form-inline{ :method => 'post', :enctype => 'multipart/form-data' }
-			%input.span4{ :type => 'file', :name => 'projectFile' }
+			%input.span4{ :type => 'file', :accept => '.als', :name => 'projectFile' }
 			%button.btn.btn-large.btn-primary{ :type => 'submit' }
 				%i.icon-white.icon-search
 				Inspect
