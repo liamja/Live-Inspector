@@ -25,6 +25,20 @@ class Main < Sinatra::Base
 
 	end
 
+	get '/demo' do
+
+	  gz = Zlib::GzipReader.new(File.join(File.dirname(__FILE__), 'demo.als'))
+	  Parse gz.read
+	  gz.close
+
+	  haml :output
+
+	end
+
+	get '/css/*.css' do
+    content_type 'text/css'
+	end
+
 	not_found do
 		halt 404, File.read(File.join(settings.public_folder, '404.html'))
 	end
