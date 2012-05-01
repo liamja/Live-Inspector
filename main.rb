@@ -11,6 +11,10 @@ class Main < Sinatra::Base
 		set :sass, { :style => :compressed } if ENV['RACK_ENV'] == 'production'
 	end
 
+	before do
+	  cache_control :public, :must_revalidate, :max_age => 60
+	end
+
 	get '/' do
 		haml :index
 	end
@@ -24,6 +28,10 @@ class Main < Sinatra::Base
 	  haml :output
 
 	end
+
+	get "/css/*.css" do
+    content_type 'text/css'
+  end
 
 	not_found do
 		halt 404, File.read(File.join(settings.public_folder, '404.html'))
