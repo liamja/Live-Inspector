@@ -11,10 +11,13 @@
       %script{ :src => "//html5shiv.googlecode.com/svn/trunk/html5.js" }
 
     / LESS Files
-    %link{ :href => "less/bootstrap.less", :rel => "stylesheet/less" }
+    / %link{ :href => "less/bootstrap.less", :rel => "stylesheet/less" }
 
-    / Pre-body JS Files
-    %script{ :src => "js/libs/less-1.3.0.min.js" }
+    / CSS Files
+    %link{ :href => "css/style.min.css", :rel => "stylesheet" }
+
+    / Pre-DOM JS Files
+    / %script{ :src => "js/libs/less-1.3.0.min.js" }
 
   %body
     %header
@@ -26,7 +29,7 @@
       = partial(:footer)
     
     / JS Files
-    %script{ :src => "js/libs/jquery-1.7.1.js" }
+    %script{ :src => "js/libs/jquery-1.7.1.min.js" }
     %script{ :src => "js/app.js" }
 
     / Mixpanel
