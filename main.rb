@@ -2,6 +2,19 @@ class Main < Sinatra::Base
 
 	helpers Sinatra::Partials
 
+	# Caching
+
+  $cache = Memcached.new
+
+  use Rack::Deflater
+
+  use Rack::Cache,
+    :verbose => true,
+    :metastore => $cache,
+    :entitystore => $cache
+
+  # Setup
+
 	configure do
 		# Configure public directory
 		set :public_folder, File.join(File.dirname(__FILE__), 'public')
@@ -12,8 +25,10 @@ class Main < Sinatra::Base
 	end
 
 	before do
-	  cache_control :public, :must_revalidate, :max_age => 60
+	  cache_control :public, :max_age => 60
 	end
+
+	# Routing
 
 	get '/' do
 		haml :index
@@ -28,6 +43,10 @@ class Main < Sinatra::Base
 	  haml :output
 
 	end
+
+	get "/img/*" do
+		cache_control :public, :max_age => 2700
+  end
 
 	get "/css/*.css" do
     content_type 'text/css'
