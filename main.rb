@@ -2,6 +2,19 @@ class Main < Sinatra::Base
 
 	helpers Sinatra::Partials
 
+	# Caching
+
+  $cache = Memcached.new
+
+  use Rack::Deflater
+
+  use Rack::Cache,
+    :verbose => true,
+    :metastore => $cache,
+    :entitystore => $cache
+
+  # Setup
+
 	configure do
 		# Configure public directory
 		set :public_folder, File.join(File.dirname(__FILE__), 'public')
@@ -10,6 +23,12 @@ class Main < Sinatra::Base
 		set :haml, { :format => :html5 }
 		set :sass, { :style => :compressed } if ENV['RACK_ENV'] == 'production'
 	end
+
+	before do
+	  cache_control :public, :max_age => 60
+	end
+
+	# Routing
 
 	get '/' do
 		haml :index
@@ -25,19 +44,13 @@ class Main < Sinatra::Base
 
 	end
 
-	get '/demo' do
+	get "/img/*" do
+		cache_control :public, :max_age => 2700
+  end
 
-	  gz = Zlib::GzipReader.new(File.join(File.dirname(__FILE__), 'demo.als'))
-	  Parse gz.read
-	  gz.close
-
-	  haml :output
-
-	end
-
-	get '/css/*.css' do
+	get "/css/*.css" do
     content_type 'text/css'
-	end
+  end
 
 	not_found do
 		halt 404, File.read(File.join(settings.public_folder, '404.html'))
