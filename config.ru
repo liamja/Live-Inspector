@@ -1,7 +1,7 @@
 require 'rubygems'
 # Server / Cache
 require 'rack/cache'
-require 'memcached'
+# require 'memcached'
 require 'sinatra'
 # App Dependencies
 require 'hpricot'

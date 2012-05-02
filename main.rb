@@ -4,14 +4,14 @@ class Main < Sinatra::Base
 
 	# Caching
 
-  $cache = Memcached.new
+  # $cache = Memcached.new
 
   use Rack::Deflater
 
-  use Rack::Cache,
-    :verbose => true,
-    :metastore => $cache,
-    :entitystore => $cache
+  # use Rack::Cache,
+  #   :verbose => true,
+  #   :metastore => $cache,
+  #   :entitystore => $cache
 
   # Setup
 
