@@ -25,7 +25,7 @@ class Main < Sinatra::Base
 	end
 
 	before do
-	  cache_control :public, :max_age => 60
+	  cache_control :public, :max_age => 86400
 	end
 
 	# Routing
@@ -45,7 +45,8 @@ class Main < Sinatra::Base
 	end
 
 	get "/img/*" do
-		cache_control :public, :max_age => 2700
+		# cache for 1 day 
+		cache_control :public, :max_age => 86400
   end
 
 	get "/css/*.css" do
