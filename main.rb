@@ -4,14 +4,14 @@ class Main < Sinatra::Base
 
 	# Caching
 
-  $cache = Memcached.new
+  # $cache = Memcached.new
 
   use Rack::Deflater
 
-  use Rack::Cache,
-    :verbose => true,
-    :metastore => $cache,
-    :entitystore => $cache
+  # use Rack::Cache,
+  #   :verbose => true,
+  #   :metastore => $cache,
+  #   :entitystore => $cache
 
   # Setup
 
@@ -22,10 +22,14 @@ class Main < Sinatra::Base
 		# Configure HAML and SASS
 		set :haml, { :format => :html5 }
 		set :sass, { :style => :compressed } if ENV['RACK_ENV'] == 'production'
+
+		# Cache for 1 day 
+		set :static_cache_control, [:public => :public, :max_age => Time.now + 24*60*60]
 	end
 
 	before do
-	  cache_control :public, :max_age => 60
+		expires Time.now + 24*60*60, :public
+	  cache_control :public, :must_revalidate, :max_age => Time.now + 24*60*60
 	end
 
 	# Routing
@@ -43,10 +47,6 @@ class Main < Sinatra::Base
 	  haml :output
 
 	end
-
-	get "/img/*" do
-		cache_control :public, :max_age => 2700
-  end
 
 	get "/css/*.css" do
     content_type 'text/css'
