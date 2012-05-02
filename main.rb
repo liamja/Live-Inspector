@@ -22,10 +22,14 @@ class Main < Sinatra::Base
 		# Configure HAML and SASS
 		set :haml, { :format => :html5 }
 		set :sass, { :style => :compressed } if ENV['RACK_ENV'] == 'production'
+
+		# Cache for 1 day 
+		set :static_cache_control, [:public => :public, :max_age => Time.now + 24*60*60]
 	end
 
 	before do
-	  cache_control :public, :max_age => 86400
+		expires Time.now + 24*60*60, :public
+	  cache_control :public, :must_revalidate, :max_age => Time.now + 24*60*60
 	end
 
 	# Routing
@@ -43,11 +47,6 @@ class Main < Sinatra::Base
 	  haml :output
 
 	end
-
-	get "/img/*" do
-		# cache for 1 day 
-		cache_control :public, :max_age => 86400
-  end
 
 	get "/css/*.css" do
     content_type 'text/css'
