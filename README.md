@@ -6,6 +6,6 @@ Built using
 * Sinatra
 * HAML
 * Hpricot
-* Zurb Foundation
+* Twitter Boostrap
 
 <http://live-inspector.herokuapp.com/>
